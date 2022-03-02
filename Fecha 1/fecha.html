@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+
+        <!--j pagina oficial https://uxsolutions.github.io/bootstrap-datepicker/?markup=range&format=&weekStart=&startDate=&endDate=&startView=0&minViewMode=0&maxViewMode=4&todayBtn=false&clearBtn=false&language=en&orientation=auto&multidate=&multidateSeparator=&calendarWeeks=on&autoclose=on&todayHighlight=on&keyboardNavigation=on&forceParse=on&beforeShowDay=on&beforeShowMonth=on&beforeShowYear=on&datesDisabled=on&toggleActive=on&defaultViewDate=on#sandbox -->
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> <!--bootstrap CSS-->
+
+        <link rel="stylesheet" href="css/bootstrap-datepicker.css"><!--datepicker CSS-->
+
+
+        <script src="js/jquery.js" type="text/javascript"></script> <!--jquery js-->
+
+        <script src="js/bootstrap-datepicker.min.js" type="text/javascript"></script> <!--jquery js-->
+
+
+
+        
+        <!-- dsd  -->
+
+
+    </head>
+    <body class="container">
+        <br><br><h1>Tipos de Calendarios</h1><br><br>   
+
+        <div class="row">
+            <div class=" form-horizontal col-md-4" >
+
+                <div class="form-group ">
+                    <label class="control-label col-md-4">Date 1 :   </label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input id="Alvaro" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                            <span class="input-group-addon"> <i class="glyphicon glyphicon-calendar"></i> </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Date 2 :   </label>
+                    <div class="col-md-8"><input class="form-control" type="text" id="siles"  placeholder="Date" required="">    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Date From :</label>
+                    <div class="col-md-8"><input class="form-control input-sm " type="text" id="from_date"   placeholder="Date" required="">    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Date To :</label>
+                    <div class="col-md-8"><input class="form-control input-sm " type="text" id="to_date"    placeholder="Date" required="">   </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <script>
+
+            /********* formato *****************************/
+            $.fn.datepicker.dates['es'] = {
+                days: ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"],
+                daysShort: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec"]
+            };
+            /********* fecha 1 *****************************/
+            $('#Alvaro').datepicker({
+                format: "dd/mm/yyyy",
+                language: "es",
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: false,
+                orientation: "auto right"
+
+            });
+            /********* fecha 2 *****************************/
+            $('#siles').datepicker({
+                format: "dd/mm/yyyy",
+                startDate: "-Infinity",
+                language: "es",
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                orientation: "auto right"
+
+            });
+            /********* fecha Inico - Fin *****************************/
+            $("#from_date").datepicker({
+                format: "dd/mm/yyyy",
+                startDate: "-Infinity",
+                language: "es",
+                keyboardNavigation: false,
+                forceParse: false,
+                orientation: "bottom right",
+                autoclose: false,
+            }).on('changeDate', function (selected) {
+                var startDate = new Date(selected.date.valueOf());
+                $('#to_date').datepicker('setStartDate', startDate);
+            }).on('clearDate', function (selected) {
+                $('#to_date').datepicker('setStartDate', null);
+            });
+            $("#to_date").datepicker({
+                format: "dd/mm/yyyy",
+                autoclose: false,
+                orientation: "bottom right",
+                language: "es",
+            }).on('changeDate', function (selected) {
+                var endDate = new Date(selected.date.valueOf());
+                $('#from_date').datepicker('setEndDate', endDate);
+            }).on('clearDate', function (selected) {
+                $('#from_date').datepicker('setEndDate', null);
+            });
+        </script>
+
+
+
+
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
